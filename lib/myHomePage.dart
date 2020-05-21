@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:highwave/referenceList.dart';
+import 'package:highwave/profilePage.dart';
+import 'package:highwave/quizPage.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
@@ -28,39 +30,50 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 
+  _profile() {
+    return Hero(
+        tag: 'profilePic',
+        child: Material(
+            child: InkWell(
+                child: Image.asset("assets/picture.png", width: 50),
+                onTap: () {
+                  Navigator.of(context).push(new MaterialPageRoute(
+                      builder: (context) => new ProfilePage()));
+                })));
+  }
+
   _overView() {
     return Column(
-      children: <Widget>[
-        Hero(
-            tag: 'profilePic',
-            child: Container(height: 40, width: 40, color: Colors.pink)),
-        _conchs()
-      ],
+      children: <Widget>[_profile(), _conchs()],
     );
   }
 
   _courseBox(course) {
-    return Container (
-      child: Column (
-        children: <Widget>[
-          Image (
-            image: new AssetImage(course["image"]),
-            height: 80.0,
-            width: 80.0,
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(new MaterialPageRoute(
+            builder: (context) => new QuizPage()));
+      },
+      child: Container(
+        child: Column(
+      children: <Widget>[
+        Image(
+          image: new AssetImage(course["image"]),
+          height: 80.0,
+          width: 80.0,
+        ),
+        Text(
+          course["name"],
+          textAlign: TextAlign.center,
+          style: new TextStyle(
+            letterSpacing: 1.0,
+            fontWeight: FontWeight.w700,
+            fontSize: 15.0,
+            color: Colors.black54,
           ),
-          Text(
-            course["name"],
-            textAlign: TextAlign.center,
-            style: new TextStyle(
-              letterSpacing: 1.0,
-              fontWeight: FontWeight.w700,
-              fontSize: 15.0,
-              color: Colors.black54,
-            ),
-          ),
-        ],
-      )
-    );
+        ),
+      ],
+    )));
   }
 
   @override
