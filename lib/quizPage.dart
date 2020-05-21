@@ -12,13 +12,35 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    _quit(BuildContext context) {
+      return showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: new Text('Are you sure you want to quit?'),
+              actions: <Widget>[
+                new FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Cancel')),
+                new FlatButton(
+                    onPressed: () {
+                      Navigator.popUntil(context, ModalRoute.withName('/'));
+                    },
+                    child: Text('Confirm'))
+              ],
+            );
+          });
+    }
+
     _appBar() {
       return SliverAppBar(
         elevation: 0.0,
         leading: new IconButton(
             icon: new Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () =>
-                Navigator.popUntil(context, ModalRoute.withName('/'))),
+            onPressed: () => _quit(context)),
       );
     }
 
@@ -44,10 +66,9 @@ class _QuizPageState extends State<QuizPage> {
           decoration: new BoxDecoration(color: Colors.blue),
           child: GestureDetector(
               onTapDown: (_) => Image.asset("assets/picture.png", width: 50),
-              child:IconButton(
+              child: IconButton(
                 icon: Icon(Icons.add_a_photo),
-              ))
-          );
+              )));
     }
 
     _questionArea() {
