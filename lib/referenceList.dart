@@ -25,3 +25,14 @@ List<Map<dynamic, dynamic>> bgcseCourses = [
     "image": "assets/picture.png"
   }];
 
+List<Map<dynamic, dynamic>> avatars = [
+  {
+    1: "assets/picture.png"
+  },
+  {
+    2: "assets/picture.png"
+  },
+  {
+    3: "assets/picture.png"
+  }
+];

@@ -12,7 +12,6 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
-
     _quit(BuildContext context) {
       return showDialog(
           context: context,
@@ -90,11 +89,7 @@ class _QuizPageState extends State<QuizPage> {
       return FlatButton(
         padding:
             EdgeInsets.only(top: 40.0, bottom: 10.0, left: 20.0, right: 20.0),
-        child: Material(
-          borderRadius: BorderRadius.circular(17.0),
-          shadowColor: Color.fromRGBO(50, 50, 50, 0.2),
-          elevation: chosenAnswer == index ? 0.0 : 1.0,
-          child: MaterialButton(
+        child: MaterialButton(
             color: chosenAnswer == index ? Color(0xFFF1BFB9) : Colors.white,
             minWidth: 300.0,
             height: 70.0,
@@ -103,12 +98,11 @@ class _QuizPageState extends State<QuizPage> {
                 chosenAnswer = index;
               });
             },
-            child: new Text("Answer 1",
+            child: new Text("Answer ${index}",
                 style: TextStyle(
                     color: Color(0xFFE08284),
                     fontWeight: FontWeight.w600,
                     fontSize: 25.0)),
-          ),
         ),
       );
     }
@@ -234,10 +228,10 @@ class _QuizPageState extends State<QuizPage> {
               _imageButton(),
               new Column(
                 children: <Widget>[
+                  _answerOptions(0),
                   _answerOptions(1),
                   _answerOptions(2),
-                  _answerOptions(3),
-                  _answerOptions(4)
+                  _answerOptions(3)
                 ],
               ),
               if (!answerSubmitted) _button(),
